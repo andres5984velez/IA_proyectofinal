@@ -70,7 +70,7 @@ if st.button("🚀 Despejar el camino", type="primary", use_container_width=True
                 st.session_state.tarea_generada = respuesta.text
                 
             except Exception as e:
-                st.error("Hubo un error al generar la ruta. Verifica tu conexión o API Key.")
+                st.error(f"Hubo un error al generar la ruta. Detalles exactos: {e}")
     else:
         st.info("Por favor, escribe tu proyecto arriba para poder ayudarte.")
 
