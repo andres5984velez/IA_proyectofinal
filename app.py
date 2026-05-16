@@ -34,7 +34,7 @@ st.markdown("Dinos cuál es tu gran proyecto. Nosotros te daremos **solo una tar
 # Streamlit leerá la API Key desde su configuración de seguridad secreta
 try:
     genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-    modelo = genai.GenerativeModel('gemini-1.5-flash')
+    modelo = genai.GenerativeModel('gemini-pro')
 except Exception as e:
     st.warning("⚠️ La API de IA no está conectada aún. Por favor, configura los Secrets en Streamlit.")
 
