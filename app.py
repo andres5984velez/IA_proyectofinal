@@ -32,11 +32,19 @@ st.markdown("Dinos cuál es tu gran proyecto. Nosotros te daremos **solo una tar
 
 # 3. CONEXIÓN SEGURA CON LA IA
 # Streamlit leerá la API Key desde su configuración de seguridad secreta
+
 try:
     genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-    modelo = genai.GenerativeModel('gemini-pro')
+    
+    # Truco definitivo: Le pedimos a Google la lista de modelos permitidos para esta API Key
+    modelos_disponibles = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+    
+    # Seleccionamos automáticamente el primer modelo válido que encontremos
+    modelo_seleccionado = modelos_disponibles[0] 
+    modelo = genai.GenerativeModel(modelo_seleccionado)
+    
 except Exception as e:
-    st.warning("⚠️ La API de IA no está conectada aún. Por favor, configura los Secrets en Streamlit.")
+    st.warning(f"⚠️ Error al conectar con la IA: {e}")
 
 # Estado temporal para guardar la tarea generada en la pantalla
 if 'tarea_generada' not in st.session_state:
