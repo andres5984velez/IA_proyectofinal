@@ -46,7 +46,7 @@ try:
 except Exception as e:
     st.warning(f"⚠️ Error al conectar con la IA: {e}")
 
-# Estado temporal para guardar la tarea generada en la pantalla
+# Estado temporal para guardar la tarea generada en la pantalla 
 if 'tarea_generada' not in st.session_state:
     st.session_state.tarea_generada = ""
 
@@ -92,3 +92,10 @@ if st.session_state.tarea_generada:
         st.balloons() # Animación de celebración nativa de Streamlit
         st.success("¡Excelente trabajo! Has protegido tu energía mental. Vuelve mañana para tu siguiente instrucción.")
         st.session_state.tarea_generada = "" # Borra la tarea para reiniciar
+
+# 7.Base de datos local (opcional, para guardar el historial de tareas)
+# Aquí podríamos implementar una función para guardar cada tarea generada en un archivo local o base de datos ligera como SQLite, pero por simplicidad y enfoque en la experiencia, lo dejamos como una posible mejora futura.
+# def guardar_historial(tarea):
+#     with open("historial_tareas.txt", "a") as f:  
+
+#google Google Sheets, Firebase o Supabase para almacenamiento en la nube y acceso desde cualquier dispositivo.
